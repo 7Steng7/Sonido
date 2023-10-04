@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grabar Audio</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        canvas {
+        background: #000;
+        display: block;
+        margin: 0 ;
+      }
+    </style>
+</head>
+<body>
+    <div style="background-color: #000; display: flex; justify-content: center; top: 100px">
+        <img src="./img/mercadoLibre.jpeg" alt="imagen de anuncio">
+    </div>
+</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+<script>
+    let mic;
+    function setup(){
+        mic = new p5.AudioIn();
+        mic.start();
+        createCanvas(windowWidth, 300);
+        textSize(25);
+    }
+
+    function draw(){
+        let valorMicrofono = mic.getLevel();
+        valorMicrofono = parseInt(map(valorMicrofono, 0, 0.5, 1, 15));
+        background('rgba(0,0,0,0.9)');
+        fill('#FFF');
+        translate(width/2,height/2);
+        text("Promociones", -190, -30);
+        fill(255);
+        translate(-200,0);
+        text("0Db", 10, 50);
+        text("140Db", 300, 50);
+        fill('#00F900');
+        translate(0,-10);
+        for(let i = 1; i<valorMicrofono; i++){
+            rect(i*30, 0, 40, 30);
+        }
+
+    }
+</script>
