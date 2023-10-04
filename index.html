@@ -22,11 +22,21 @@
 </head>
 <body>
     <div style="background-color: #000; display: flex; justify-content: center; top: 100px">
-        <img src="./img/mercadoLibre.jpeg" alt="imagen de anuncio">
+        <img style="max-width: 100%;" src="./img/mercadoLibre.jpeg" alt="imagen de anuncio">
     </div>
-    <button onclick="userStartAudio()" data-playing="false" role="switch" aria-checked="false">
-        <span>Play/Pause</span>
-    </button>
+    <div style="display: flex; justify-content: center; padding-top: 30px;">
+        <button style=" 
+        padding: 10px 20px;
+        background-color: #f9ec00;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 25px;" 
+        onclick="userStartAudio()" data-playing="false" role="switch" aria-checked="false">
+            <span>Play</span>
+        </button>
+    </div>
 </body>
 </html>
 <script>
@@ -39,7 +49,6 @@
     }
 
     function draw(){
-        text(getAudioContext().state, width/2, height/2);
         let valorMicrofono = mic.getLevel();
         valorMicrofono = parseInt(map(valorMicrofono, 0, 0.5, 1, 15));
         background('rgba(0,0,0,0.9)');
@@ -58,7 +67,7 @@
     }
 
     function mousePressed() {
-        userStartAudio();
+            userStartAudio(); 
     }
 
 </script>
