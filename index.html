@@ -17,16 +17,18 @@
         margin: 0 ;
       }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
 </head>
 <body>
     <div style="background-color: #000; display: flex; justify-content: center; top: 100px">
         <img src="./img/mercadoLibre.jpeg" alt="imagen de anuncio">
     </div>
+    <button onclick="userStartAudio()" data-playing="false" role="switch" aria-checked="false">
+        <span>Play/Pause</span>
+    </button>
 </body>
 </html>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
 <script>
     let mic;
     function setup(){
@@ -37,6 +39,7 @@
     }
 
     function draw(){
+        text(getAudioContext().state, width/2, height/2);
         let valorMicrofono = mic.getLevel();
         valorMicrofono = parseInt(map(valorMicrofono, 0, 0.5, 1, 15));
         background('rgba(0,0,0,0.9)');
@@ -52,6 +55,10 @@
         for(let i = 1; i<valorMicrofono; i++){
             rect(i*30, 0, 40, 30);
         }
-
     }
+
+    function mousePressed() {
+        userStartAudio();
+    }
+
 </script>
